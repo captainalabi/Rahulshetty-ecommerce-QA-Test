@@ -92,9 +92,26 @@ i++
    }
 }
 */
+
+async buyMultiple(no, some){
+
+let i = 0;
+while(i < no){
+
+
+    i++
+   await some;
+  await browser.pause(2000)
+    //if(i === no){ break}
+}
+
+}
+
 async addBrocolliToCart(){
     await this.searchForProducts('Brocolli')
+    //await browser.pause(2000)
     await this.brocolliButton.click()
+    //await browser.pause(2000)
     await this.searchField.clearValue()
 }
 

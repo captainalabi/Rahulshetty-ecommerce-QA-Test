@@ -20,11 +20,16 @@ describe('Test ecommerce', () => {
        let arrayOfFruits = [ "Brocolli", "Cauliflower", "Cucumber", "Beetroot"]
       await FruitsPage.addToCart(arrayOfFruits)
 */
-       
+       /*
      await FruitsPage.addBrocolliToCart()
      await FruitsPage.addCauliflowerToCart()
      await FruitsPage.addBeetrootToCart()
      await FruitsPage.addCucumberToCart()
+*/
+
+      await FruitsPage.buyMultiple(1, FruitsPage.addBrocolliToCart())
+      await FruitsPage.buyMultiple(4, FruitsPage.addCauliflowerToCart())
+
 
       await browser.pause(6000)
     });

@@ -5,6 +5,8 @@ class Fruits extends Page{
     cartQ(index){ return $(`tbody tr:nth-child(${index}) td:nth-child(3)`)}
 
     cartPrice(index){ return $(`tbody tr:nth-child(${index}) td:nth-child(4)`)}
+
+    cartTotalPrice(index){ return $(`tbody tr:nth-child(${index}) td:nth-child(5)`)}
     
 
 get proceedToCheckOutButton(){ return $("div.cart-preview.active div.action-block")}

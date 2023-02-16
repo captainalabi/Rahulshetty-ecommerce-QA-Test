@@ -77,9 +77,25 @@ await browser.pause(2000)
 await expect( await FruitsPage.cartPrice(4)).toHaveText("32")
 await browser.pause(2000)
 
-//2. get price for each
-//3. get total for each
-//4. get grand total cost
+//validate total cost for each
+let calcuBroTotalCost = 120 * 3
+await expect(FruitsPage.cartTotalPrice(1)).toHaveText(calcuBroTotalCost.toString())
+
+let calcuCauliTotalCost = 60 * 4
+await expect(FruitsPage.cartTotalPrice(2)).toHaveText(calcuCauliTotalCost.toString())
+
+await browser.pause(2000)
+
+let calcuCucTotalCost = 48 * 2
+await expect(FruitsPage.cartTotalPrice(3)).toHaveText(calcuCucTotalCost.toString())
+
+let calcuBeetTotalCost = 32 * 1
+await expect(FruitsPage.cartTotalPrice(4)).toHaveText(calcuBeetTotalCost.toString())
+
+await browser.pause(2000)
+
+// get grand total cost
+let calcuGrandTotal = calcuBroTotalCost + calcuCauliTotalCost + calcuCucTotalCost + calcuBeetTotalCost
 
       await browser.pause(5000)
     });

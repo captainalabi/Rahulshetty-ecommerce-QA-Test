@@ -2,10 +2,10 @@ import Page from "./page.js";
 
 class Fruits extends Page{
 
-    async cartQty(index){ 
-       await return $(`#productCartTables tbody tr:nth-child(1) td:nth-child(${index})`)
-    }
-     
+    cartQ(index){ return $(`tbody tr:nth-child(${index}) td:nth-child(3)`)}
+
+    cartPrice(index){ return $(`tbody tr:nth-child(${index}) td:nth-child(4)`)}
+    
 
 get proceedToCheckOutButton(){ return $("div.cart-preview.active div.action-block")}
 

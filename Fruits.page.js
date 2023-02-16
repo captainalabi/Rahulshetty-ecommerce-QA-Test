@@ -2,6 +2,15 @@ import Page from "./page.js";
 
 class Fruits extends Page{
 
+    async cartQty(index){ 
+       await return $(`#productCartTables tbody tr:nth-child(1) td:nth-child(${index})`)
+    }
+     
+
+get proceedToCheckOutButton(){ return $("div.cart-preview.active div.action-block")}
+
+//the cart selector
+get theCart(){ return $("div.cart a.cart-icon ")}
 
 /**
  *  get any addToCart Button by index. Note that buttonIndex = productIndex
@@ -21,6 +30,14 @@ get searchField(){ return $(".search-keyword")}
 // get the labels of all the products to extract their names
 get allProductLabels (){ return $$("h4.product-name")}
 
+async clickProceedToCheckOutButton(){
+    await this.proceedToCheckOutButton.click()
+}
+
+async clickTheCart(){
+   await this.theCart.click()
+}
+
 /**
  * set value of the search field to search for product
  * @param {String} productName 
@@ -31,53 +48,37 @@ async searchForProducts(productName){
 
 /**
  * search for the index of any named product
+ * and use it to click its button
  * @param {string} name of product to buy
  * 
  */
-
 async clickAnAddToCartButton(buyName){
     let theName;
       for(let i= 0; i <= (await this.allProductLabels.length); i++){
        theName = await this.allProductLabels[i].getText()
         if(theName.includes(buyName)){
           
-          await this.allAddToCartButton[i ].click()
+          await this.allAddToCartButton[i].click()
         break
         }
       }
 
 }
-
+/**
+ * repeat any code any number of times
+ * @param {number} noOfTimes 
+ * @param {string} buyName 
+ */
 async clickManyTimes(noOfTimes, buyName){    
     for(let i = 1; i <= noOfTimes; i++){
        this.clickAnAddToCartButton(buyName)
     }
     }
 
-/**
- * 
- * @param {string} productName 
- * @param {number} howMany 
- */
-async clickMultipleTimes(productName, howMany){
-
-    for(let j = 1; j <= howMany; j++ ){//click multiple
-        
-        for(let productIndex = 1; productIndex <= await this.allProductLabels.length; ++productIndex){//search index
-        
-            //if text contains name of fruit, return index
-            if( (( this.allProductLabels[productIndex]).getText().includes(productName))){
-                
-                console.log( "productIndex ::::::::::::: " + productIndex)
-                console.log( "productName ::::::::::::: " + await (this.allProductLabels(productIndex )).getText())
-                
-               break;
-            }
-        }
-       
-    }
-}
-
+    /**
+     * 
+     * @returns open browser as specified by the parent page
+     */
 async open(){
     return super.open()
 }

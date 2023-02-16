@@ -4,48 +4,53 @@ import FruitsPage from "../pageobjects/Fruits.page.js";
 describe('Test ecommerce', () => {
     it('buy 4 fruits', async () => {
         
-      await browser.url("https://rahulshettyacademy.com/seleniumPractise/#/");
+      //await browser.url("https://rahulshettyacademy.com/seleniumPractise/#/");
+      await FruitsPage.open()
+
+      await browser.maximizeWindow() 
     
-      let buyName = "Cucumber";
+      let listToBuy = ["Brocolli", "Cauliflower", "Cucumber", "Beetroot"]
+      //let buyName = "Cucumber";
       
-      await FruitsPage.clickManyTimes(3, buyName)
+      await FruitsPage.clickManyTimes(3, listToBuy[0])
+      await FruitsPage.clickManyTimes(4, listToBuy[1])
+      await FruitsPage.clickManyTimes(2, listToBuy[2])
+      await FruitsPage.clickManyTimes(1, listToBuy[3])
+      
+      await browser.pause(10000)
 
-      /*
-      let theName;
-      for(let i= 1; i <= (await FruitsPage.allProductLabels.length); i++){
-          
-        theName = await FruitsPage.allProductLabels[i - 1].getText()
-        if(theName.includes(buyName)){
-          
-          console.log(i + " i ::::::::: "  + theName)
-          await FruitsPage.allAddToCartButton[i - 1].click()
-        break
-        }
-      }
+      await FruitsPage.clickTheCart()
 
-     //await FruitsPage.clickMultipleTimes("Brocolli", 2)
-      /*
-//iterate through the addToCartButtons
-        for(let j= 0; j <= (await FruitsPage.allAddToCartButton.length) +1; j++){
+      await browser.pause(1000)
 
-         // console.log( await FruitsPage.allAddToCartButton[j].getText()  + " j ::::::::: " + i)
-         if(j == 30){ 
-          j--
-         await FruitsPage.allAddToCartButton[j].click() 
-          break
-        }
-        }
-/*
-       //await FruitsPage.open()
-       
-       //await browser.maximizeWindow()
-  
-//let productName = "Brocolli"
-//let howMany = 3
+      await FruitsPage.clickProceedToCheckOutButton()
 
-       //add 3 Brocolli to cart
-      //await FruitsPage.clickMultipleTimes(productName, howMany)
-       */
-      await browser.pause(6000)
+      //validate qty of each product and the total cost on the checkout page
+
+      //the quantities requested
+let brocolliQtyReq = 3
+let cauliflowerQtyReq = 4
+let cucumberQtyReq = 2
+let beetrootQtyReq = 1
+
+
+//validate brocolli qty
+let broCartQty = await $("#productCartTables tbody tr:nth-child(1) td:nth-child(3)")
+
+//console.log( "qty ::::::::::::::: " + bQty)
+//validate that qty requested equals cart qty
+await expect(FruitsPage.cartQty(1)).toHaveText("3")
+
+// get qty for each
+let brocolliDisplayPrice = 120
+let cauliflowerDisplayPrice = 60
+let cucumberDisplayPrice = 48
+let beetrootDisplayPrice = 32
+
+//2. get price for each
+//3. get total for each
+//4. get grand total cost
+
+      await browser.pause(5000)
     });
 });

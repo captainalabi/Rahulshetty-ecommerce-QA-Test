@@ -2,9 +2,9 @@ import Page from "./page.js";
 
 class Fruits extends Page{
 
-// get any addToCart Button by index. Note that buttonIndex = productIndex
+
 /**
- * 
+ *  get any addToCart Button by index. Note that buttonIndex = productIndex
  * @param {number} buttonIndex 
  * @returns button selector for the index
  */
@@ -12,10 +12,14 @@ class Fruits extends Page{
      return $(`div:nth-child(${buttonIndex}) div.product-action `)
     }
 
+    //get all addToCartButton
+    get allAddToCartButton(){return $$(".product-action")}
+
     //get the search input field
 get searchField(){ return $(".search-keyword")}
 
-get allProductLabels (){ return $$(".product-name")}
+// get the labels of all the products to extract their names
+get allProductLabels (){ return $$("h4.product-name")}
 
 /**
  * set value of the search field to search for product
@@ -39,22 +43,16 @@ async searchForProducts(productName){
  */
 async clickMultipleTimes(productName, howMany){
 
-
-
-    for(let j = 1; j <= howMany; j++ ){
+    for(let j = 1; j <= howMany; j++ ){//click multiple
         
-        for(let productIndex = 1; productIndex <= await this.allProductLabels.length; ++productIndex){
+        for(let productIndex = 1; productIndex <= await this.allProductLabels.length; ++productIndex){//search index
         
-            //productIndex ++
             //if text contains name of fruit, return index
-            if( ((await this.addTocartButton (productIndex ).getText()).includes(productName))){
+            if( (( this.allProductLabels[productIndex]).getText().includes(productName))){
                 
                 console.log( "productIndex ::::::::::::: " + productIndex)
-                console.log( "productName ::::::::::::: " + await this.addTocartButton (productIndex ).getText())
-                console.log( "howMany ::::::::::::: " + howMany)
+                console.log( "productName ::::::::::::: " + await (this.allProductLabels(productIndex )).getText())
                 
-               await this.addTocartButton(productIndex ).click()
-
                break;
             }
         }

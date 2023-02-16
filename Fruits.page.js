@@ -32,9 +32,27 @@ async searchForProducts(productName){
 /**
  * search for the index of any named product
  * @param {string} name of product to buy
- * @returns {number} index of the product
+ * 
  */
 
+async clickAnAddToCartButton(buyName){
+    let theName;
+      for(let i= 0; i <= (await this.allProductLabels.length); i++){
+       theName = await this.allProductLabels[i].getText()
+        if(theName.includes(buyName)){
+          
+          await this.allAddToCartButton[i ].click()
+        break
+        }
+      }
+
+}
+
+async clickManyTimes(noOfTimes, buyName){    
+    for(let i = 1; i <= noOfTimes; i++){
+       this.clickAnAddToCartButton(buyName)
+    }
+    }
 
 /**
  * 

@@ -6,15 +6,19 @@ describe('Test ecommerce', () => {
         
       await browser.url("https://rahulshettyacademy.com/seleniumPractise/#/");
     
-      let i;
-      let buyName = "Brocolli"
+      let buyName = "Cucumber";
+      
+      await FruitsPage.clickManyTimes(3, buyName)
+
+      /*
       let theName;
-      for(i= 1; i <= (await FruitsPage.allProductLabels.length); i++){
+      for(let i= 1; i <= (await FruitsPage.allProductLabels.length); i++){
           
-        if(i == 1){
-          theName = await FruitsPage.allProductLabels[i - 1].getText()
+        theName = await FruitsPage.allProductLabels[i - 1].getText()
+        if(theName.includes(buyName)){
           
-        console.log(i + " i ::::::::: "  + theName)
+          console.log(i + " i ::::::::: "  + theName)
+          await FruitsPage.allAddToCartButton[i - 1].click()
         break
         }
       }

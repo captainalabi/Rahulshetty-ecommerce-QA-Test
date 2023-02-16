@@ -2,6 +2,10 @@ import Page from "./page.js";
 
 class Fruits extends Page{
 
+    get placeOrder(){ return $("=Place Order")}
+
+    get grandTotal(){ return $("#root span.discountAmt")}
+
     cartQ(index){ return $(`tbody tr:nth-child(${index}) td:nth-child(3)`)}
 
     cartPrice(index){ return $(`tbody tr:nth-child(${index}) td:nth-child(4)`)}
@@ -31,6 +35,10 @@ get searchField(){ return $(".search-keyword")}
 
 // get the labels of all the products to extract their names
 get allProductLabels (){ return $$("h4.product-name")}
+
+async clickPlaceOrder(){
+    await this.placeOrder.click()
+}
 
 async clickProceedToCheckOutButton(){
     await this.proceedToCheckOutButton.click()

@@ -56,25 +56,25 @@ await browser.pause(2000)
 //validate unit price of each fruit
 
 // cost of each
-//brocolli = 120
-//cauliflower = 60
-//cucumber = 48
-//beetroot = 32
+let brocolliPrice = 120
+let cauliflowerPrice = 60
+let cucumberPrice = 48
+let beetrootPrice = 32
 
 //validate brocolli cost
-await expect( await FruitsPage.cartPrice(1)).toHaveText("120")
+await expect( await FruitsPage.cartPrice(1)).toHaveText(brocolliPrice.toString())
 await browser.pause(2000)
 
 //validate cauliflower cost
-await expect( await FruitsPage.cartPrice(2)).toHaveText("60")
+await expect( await FruitsPage.cartPrice(2)).toHaveText(cauliflowerPrice.toString())
 await browser.pause(2000)
 
 //validate cucumber cost
-await expect( await FruitsPage.cartPrice(3)).toHaveText("48")
+await expect( await FruitsPage.cartPrice(3)).toHaveText(cucumberPrice.toString())
 await browser.pause(2000)
 
 //validate cauliflower cost
-await expect( await FruitsPage.cartPrice(4)).toHaveText("32")
+await expect( await FruitsPage.cartPrice(4)).toHaveText(beetrootPrice.toString())
 await browser.pause(2000)
 
 //validate total cost for each
@@ -94,9 +94,15 @@ await expect(FruitsPage.cartTotalPrice(4)).toHaveText(calcuBeetTotalCost.toStrin
 
 await browser.pause(2000)
 
-// get grand total cost
+// validate grand total cost
 let calcuGrandTotal = calcuBroTotalCost + calcuCauliTotalCost + calcuCucTotalCost + calcuBeetTotalCost
 
-      await browser.pause(5000)
+await expect( await FruitsPage.grandTotal).toHaveText(calcuGrandTotal.toString())
+
+      await browser.pause(2000)
+
+      await FruitsPage.clickPlaceOrder()
+
+      await browser.pause(2000)
     });
 });

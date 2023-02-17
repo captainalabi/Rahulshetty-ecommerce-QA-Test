@@ -101,7 +101,12 @@ await expect( await FruitsPage.grandTotal).toHaveText(calcuGrandTotal.toString()
 
       await browser.pause(2000)
 
+      await FruitsPage.placeOrder.scrollIntoView()
       await FruitsPage.clickPlaceOrder()
+
+      await FruitsPage.clickAgreeToTerms()
+
+      await FruitsPage.clickProceedButton()
 
       await browser.pause(2000)
     });

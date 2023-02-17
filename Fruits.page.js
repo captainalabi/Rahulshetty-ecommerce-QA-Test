@@ -2,7 +2,11 @@ import Page from "./page.js";
 
 class Fruits extends Page{
 
-    get placeOrder(){ return $("=Place Order")}
+    get proceedButton(){ return $("#root button")}
+
+    get agreeToTerms(){ return $(".chkAgree")}
+
+    get placeOrder(){ return $('//body/div/div/div/div/div/button')}
 
     get grandTotal(){ return $("#root span.discountAmt")}
 
@@ -35,6 +39,14 @@ get searchField(){ return $(".search-keyword")}
 
 // get the labels of all the products to extract their names
 get allProductLabels (){ return $$("h4.product-name")}
+
+async clickProceedButton(){
+    await this.proceedButton.click()
+}
+
+async clickAgreeToTerms(){
+   await this.agreeToTerms.click()
+}
 
 async clickPlaceOrder(){
     await this.placeOrder.click()
